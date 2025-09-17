@@ -1,0 +1,70 @@
+/* 기본 및 비율 변수 */
+:root{
+  --topbar-h: 60px;   /* 6 */
+  --toolbar-h: 40px;  /* 4 */
+  color-scheme: light;
+}
+*{ box-sizing:border-box; }
+body{ margin:0; background:#fff; color:#222; font-family: Arial, Helvetica, sans-serif; }
+img{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; cursor:pointer; }
+
+/* ── 상단 네비(검정, 왼쪽 정렬) ── */
+.topbar{
+  background:#222; color:#fff;
+  min-height:var(--topbar-h);
+  display:flex; align-items:center;
+  padding:0 16px;
+}
+.nav-left{ display:flex; align-items:center; gap:16px; }
+.brand{ font-weight:800; }
+.menu a{ margin-right:12px; color:#ddd; }
+
+/* ── 보라색 툴바(가운데 정렬) ── */
+.toolbar{
+  background:#7a1fd3; color:#fff;
+  min-height:var(--toolbar-h);
+  display:flex; align-items:center; justify-content:center;
+}
+.toolbar-inner{
+  display:flex; gap:16px; align-items:center;
+}
+
+/* 텍스트만 보이는 클릭 요소 (테두리/박스 제거) */
+.link-btn{
+  background:transparent;
+  border:none; outline:none;
+  padding:4px 2px;
+  font-weight:700;
+  color:#fff;
+  cursor:pointer;
+}
+.link-btn:hover{ text-decoration:underline; }
+.link-btn:active{ opacity:.85; }
+
+/* 리스트/카드 */
+.wrap{ max-width:1100px; margin:18px auto; padding:0 12px; }
+.card{
+  background:#fff; border:1px solid #eee; border-radius:10px;
+  padding:18px 12px; margin-bottom:24px; cursor:pointer;
+  box-shadow:0 1px 2px rgba(0,0,0,.04);
+}
+.title{ text-align:center; margin:0 0 4px; font-weight:600; }
+.sub{ text-align:center; color:#666; margin:0 0 12px; font-size:14px; }
+.thumb{ border-radius:8px; margin:0 auto; }
+
+/* 모달 */
+.dim{ position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:90; }
+.modal{
+  position:fixed; left:50%; top:80px; transform:translateX(-50%);
+  width:min(640px, 92vw); background:#fff; border-radius:12px; padding:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35); z-index:100; text-align:center;
+}
+.modal-title{ margin:0 0 6px; font-size:18px; }
+.modal-desc{ color:#444; margin:0 0 8px; }
+.modal-price{ font-weight:700; margin:0 0 12px; }
+.modal-img{ width:100%; border-radius:8px; }
+.btn-close{
+  margin-top:12px; padding:6px 10px; border:1px solid #333;
+  background:#fff; border-radius:6px; cursor:pointer;
+}

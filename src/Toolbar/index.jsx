@@ -14,7 +14,7 @@ function Toolbar({resetSort, setSort, arrow}){
           </button>
         </div>
       </section>
-  )
+  );
 }
 
 export default Toolbar;

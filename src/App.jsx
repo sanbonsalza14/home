@@ -24,35 +24,24 @@ function App() {
   const [sortDir, setSortDir] = useState("asc"); // "asc" | "desc"
 
   const setSort = (field) => {
-    if (sortBy === field) {
-      setSortDir((d) => (d === "asc" ? "desc" : "asc"));
-    } else {
-      setSortBy(field);
-      setSortDir("asc");
-    }
+    if (sortBy === field) setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+    else { setSortBy(field); setSortDir("asc"); }
   };
-  const resetSort = () => {
-    setSortBy(null);
-    setSortDir("asc");
-  };
+  const resetSort = () => { setSortBy(null); setSortDir("asc"); };
 
-  // 정렬된 배열 반환
+  // 정렬된 데이터
   const sorted = useMemo(() => {
-    if (!sortBy) return rooms;
-    const copy = [...rooms];
-    copy.sort((a, b) => {
-      const A = a[sortBy];
-      const B = b[sortBy];
-      if (A < B) return sortDir === "asc" ? -1 : 1;
-      if (A > B) return sortDir === "asc" ? 1 : -1;
-      return 0;
+    const arr = [...rooms];
+    if (!sortBy) return arr;
+    arr.sort((a, b) => {
+      let A = a[sortBy], B = b[sortBy];
+      if (typeof A === "string") return (sortDir === "asc" ? 1 : -1) * A.localeCompare(B);
+      return sortDir === "asc" ? A - B : B - A;
     });
-    return copy;
+    return arr;
   }, [rooms, sortBy, sortDir]);
 
-  // 정렬 방향 화살표 표시
-  const arrow = (field) =>
-    sortBy === field ? (sortDir === "asc" ? " 🔺" : " 🔻") : "";
+  const arrow = (field) => (sortBy === field ? (sortDir === "asc" ? " 🔺" : " 🔻") : "");
 
   return (
     <>
@@ -65,11 +54,7 @@ function App() {
       {/* 리스트 */}
       <main className="wrap">
         {sorted.map((room) => (
-          <RoomCard
-            key={room.id}
-            room={room}
-            openModal={openModal}
-          />
+          <RoomCard key={room.id} room={room} openModal={openModal} />
         ))}
       </main>
 
@@ -80,5 +65,4 @@ function App() {
     </>
   );
 }
-
 export default App;
